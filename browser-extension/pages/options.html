@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Control API - Settings</title>
+  <link rel="stylesheet" href="../styles/options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>DOM Control API Settings</h1>
+      <p class="subtitle">Configure your API connection and extension preferences</p>
+    </header>
+
+    <form id="settingsForm">
+      <!-- Connection Settings -->
+      <section class="section">
+        <h2>Connection Settings</h2>
+
+        <div class="form-group">
+          <label for="apiUrl">WebSocket URL</label>
+          <input type="url" id="apiUrl" placeholder="ws://localhost:8080" pattern="wss?://.*">
+          <p class="help-text">The WebSocket URL of your DOM Control API server</p>
+        </div>
+
+        <div class="form-group">
+          <label for="httpFallbackUrl">HTTP Fallback URL</label>
+          <input type="url" id="httpFallbackUrl" placeholder="http://localhost:8080">
+          <p class="help-text">Used when WebSocket connection fails or is disabled</p>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" id="useWebSocket" checked>
+            <span>Use WebSocket (recommended)</span>
+          </label>
+          <p class="help-text">Disable to use HTTP polling instead</p>
+        </div>
+
+        <div class="form-group">
+          <label for="pollingRate">HTTP Polling Rate (ms)</label>
+          <input type="number" id="pollingRate" min="100" max="60000" step="100" value="1000">
+          <p class="help-text">How often to poll the server when using HTTP fallback</p>
+        </div>
+      </section>
+
+      <!-- Authentication -->
+      <section class="section">
+        <h2>Authentication</h2>
+
+        <div class="form-group">
+          <label for="authToken">API Token</label>
+          <input type="password" id="authToken" placeholder="Enter your API token">
+          <p class="help-text">Optional authentication token for secure API connections</p>
+        </div>
+      </section>
+
+      <!-- Behavior Settings -->
+      <section class="section">
+        <h2>Behavior</h2>
+
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" id="autoConnect">
+            <span>Auto-connect on browser startup</span>
+          </label>
+          <p class="help-text">Automatically connect to the API when the browser starts</p>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" id="logCommands" checked>
+            <span>Log commands to console</span>
+          </label>
+          <p class="help-text">Log all executed commands to the browser console</p>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" id="allowRawExecution">
+            <span>Allow raw JavaScript execution</span>
+          </label>
+          <p class="help-text">Enable execution of arbitrary JavaScript code (security risk)</p>
+        </div>
+      </section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">Save Settings</button>
+        <button type="button" id="resetBtn" class="btn btn-secondary">Reset to Defaults</button>
+        <button type="button" id="testBtn" class="btn btn-secondary">Test Connection</button>
+      </div>
+
+      <div id="statusMessage" class="status-message"></div>
+    </form>
+
+    <!-- API Documentation Quick Reference -->
+    <section class="section">
+      <h2>API Quick Reference</h2>
+      <div class="api-reference">
+        <h3>Message Format (WebSocket)</h3>
+        <pre><code>{
+  "type": "execute",
+  "tabId": null,  // null = active tab
+  "command": "select.one",
+  "payload": {
+    "args": ["#myElement"]
+  }
+}</code></pre>
+
+        <h3>Available Commands</h3>
+        <ul class="command-list">
+          <li><strong>select</strong>: one, all, byId, byClass, byTag, byName, byXPath, atPoint</li>
+          <li><strong>create</strong>: element, text, comment, fragment, fromHTML</li>
+          <li><strong>manipulate</strong>: append, prepend, insertBefore, insertAfter, remove, replace, clone, wrap</li>
+          <li><strong>content</strong>: html, text, outer, value</li>
+          <li><strong>attributes</strong>: get, set, remove, has, getAll, toggle</li>
+          <li><strong>classes</strong>: add, remove, toggle, has, replace, getAll</li>
+          <li><strong>style</strong>: get, set, remove, show, hide, toggle, injectCSS</li>
+          <li><strong>events</strong>: on, off, trigger, click, focus, blur, mouse, keyboard</li>
+          <li><strong>traverse</strong>: parent, parents, closest, children, siblings, next, prev</li>
+          <li><strong>dimensions</strong>: rect, offset, scroll, scrollIntoView, width, height</li>
+          <li><strong>form</strong>: getData, setData, submit, reset, validate</li>
+          <li><strong>utils</strong>: waitFor, getPageInfo, getLinks, getImages, highlight</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

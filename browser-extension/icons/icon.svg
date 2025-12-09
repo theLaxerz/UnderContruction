@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4285f4"/>
+      <stop offset="100%" style="stop-color:#2962ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+
+  <!-- DOM Tree Symbol -->
+  <g fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Root node -->
+    <circle cx="64" cy="28" r="8" fill="white"/>
+
+    <!-- Lines to children -->
+    <line x1="64" y1="36" x2="64" y2="48"/>
+    <line x1="64" y1="48" x2="36" y2="58"/>
+    <line x1="64" y1="48" x2="92" y2="58"/>
+
+    <!-- Child nodes -->
+    <circle cx="36" cy="64" r="7" fill="white"/>
+    <circle cx="92" cy="64" r="7" fill="white"/>
+
+    <!-- Lines to grandchildren -->
+    <line x1="36" y1="71" x2="24" y2="85"/>
+    <line x1="36" y1="71" x2="48" y2="85"/>
+    <line x1="92" y1="71" x2="80" y2="85"/>
+    <line x1="92" y1="71" x2="104" y2="85"/>
+
+    <!-- Grandchild nodes -->
+    <circle cx="24" cy="92" r="6" fill="white"/>
+    <circle cx="48" cy="92" r="6" fill="white"/>
+    <circle cx="80" cy="92" r="6" fill="white"/>
+    <circle cx="104" cy="92" r="6" fill="white"/>
+  </g>
+
+  <!-- API Connection Symbol -->
+  <g fill="white" opacity="0.9">
+    <rect x="54" y="100" width="20" height="4" rx="2"/>
+  </g>
+</svg>
