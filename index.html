@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenGL Atom Simulator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+        }
+        canvas { display: block; width: 100vw; height: 100vh; }
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(100, 180, 255, 0.5);
+        }
+        #legend {
+            display: flex;
+            gap: 18px;
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        #controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(10, 15, 30, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 180, 255, 0.15);
+            min-width: 200px;
+        }
+        #controls label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        #controls input[type="range"] {
+            width: 100%;
+            accent-color: #4af;
+        }
+        #controls select {
+            background: rgba(20, 30, 50, 0.8);
+            color: #fff;
+            border: 1px solid rgba(100, 180, 255, 0.3);
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            opacity: 0.5;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="glcanvas"></canvas>
+
+    <div id="ui">
+        <h1>ATOM SIMULATOR</h1>
+        <div id="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #ff4444;"></div>
+                <span>Proton (+)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #4488ff;"></div>
+                <span>Neutron</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #44ff88;"></div>
+                <span>Electron (-)</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="controls">
+        <label>
+            Element
+            <select id="element">
+                <option value="1">Hydrogen (1)</option>
+                <option value="2">Helium (2)</option>
+                <option value="3">Lithium (3)</option>
+                <option value="6" selected>Carbon (6)</option>
+                <option value="7">Nitrogen (7)</option>
+                <option value="8">Oxygen (8)</option>
+                <option value="10">Neon (10)</option>
+                <option value="11">Sodium (11)</option>
+                <option value="14">Silicon (14)</option>
+                <option value="26">Iron (26)</option>
+            </select>
+        </label>
+        <label>
+            Orbit Speed
+            <input type="range" id="speed" min="0.1" max="3" step="0.1" value="1">
+        </label>
+        <label>
+            Zoom
+            <input type="range" id="zoom" min="3" max="15" step="0.5" value="7">
+        </label>
+    </div>
+
+    <div id="info">Click & drag to rotate | Scroll to zoom</div>
+
+    <script src="js/gl-matrix-min.js"></script>
+    <script src="js/atom-simulator.js"></script>
+</body>
+</html>
