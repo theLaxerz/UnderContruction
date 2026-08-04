@@ -1,27 +1,32 @@
-# UnderConstruction
+# Atom Simulator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.15.
+A 3D atom simulator built with WebGL (OpenGL ES 2.0) that renders an interactive atomic model with color-coded subatomic particles.
 
-## Development server
+## Particles
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+| Particle | Color | Description |
+|----------|-------|-------------|
+| Proton   | Red   | Positive charge, in nucleus |
+| Neutron  | Blue  | Neutral, in nucleus |
+| Electron | Green | Negative charge, orbiting |
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **10 elements** from Hydrogen to Iron
+- **3D rendering** with Phong shading, specular highlights, and rim glow
+- **Interactive camera** - click and drag to orbit, scroll to zoom
+- **Adjustable orbit speed** and zoom controls
+- **Touch support** for mobile devices
+- **No dependencies** - pure WebGL, no build step required
 
-## Build
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Open `index.html` in any modern browser. No server required.
 
-## Running unit tests
+## Controls
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- **Click + drag**: Rotate the view
+- **Scroll wheel**: Zoom in/out
+- **Element dropdown**: Switch between elements
+- **Speed slider**: Adjust electron orbit speed
+- **Zoom slider**: Fine-tune camera distance
